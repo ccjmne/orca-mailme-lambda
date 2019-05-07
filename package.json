@@ -1,0 +1,34 @@
+{
+  "name": "orca-mailme-lambda",
+  "version": "1.0.0",
+  "description": "Serverless API endpoint to let clients get in touch. Basically an AWS Lambda function leveraging SES, invoked through API Gateway and packaged into CloudFormation using AWS SAM.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "package": "sam package --template-file template.yml --output-template-file dist/package.yml --s3-bucket orca-mailme-lambda",
+    "deploy": "sam deploy --template-file dist/package.yml --stack-name orca-mailme-lambda --capabilities CAPABILITY_IAM",
+    "retire": "aws cloudformation delete-stack --stack-name orca-mailme-lambda",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccjmne/orca-mailme-lambda.git"
+  },
+  "keywords": [
+    "serverless",
+    "aws",
+    "lambda",
+    "sam",
+    "ses",
+    "api",
+    "gateway",
+    "cloudformation",
+    "mail"
+  ],
+  "author": "Eric NICOLAS <ccjmne@gmail.com> (ccjmne)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ccjmne/orca-mailme-lambda/issues"
+  },
+  "homepage": "https://github.com/ccjmne/orca-mailme-lambda#readme"
+}
