@@ -8,19 +8,5 @@ module.exports = {
   },
   externals: {
     'aws-sdk': 'aws-sdk'
-  },
-  module: {
-    rules: [{
-      test: /\.html$/,
-      use: {
-        loader: 'html-loader',
-        options: { minimize: true }
-      }
-    }, {
-      test: /\.png$/,
-      use: {
-        loader: 'url-loader'
-      }
-    }],
   }
 };
