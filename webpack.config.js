@@ -6,6 +6,9 @@ module.exports = {
     library: '',
     libraryTarget: 'commonjs'
   },
+  externals: {
+    'aws-sdk': 'aws-sdk'
+  },
   module: {
     rules: [{
       test: /\.html$/,
