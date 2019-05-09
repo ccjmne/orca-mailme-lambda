@@ -14,11 +14,11 @@ Resources:
           Statement:
             - Effect:     Allow
               Action:
-                - ses:SendEmail
+                - ses:sendTemplatedEmail
               Resource:   '*'
       Events:
         MailmeApi:
           Type:           Api
           Properties:
-            Path:         /
+            Path:         /{template}
             Method:       POST

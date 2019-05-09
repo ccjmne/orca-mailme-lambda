@@ -8,32 +8,26 @@ const from = { mail: 'infos@orca-solution.com', name: 'Orca — Renseignements' 
 /**
  * @param { mail: string, name: string, org: string, message?: string } queryStringParameters The query parameters
  */
-export async function handler({ queryStringParameters }, ctx) {
-
-  const { mail } = queryStringParameters;
-  const sesParams = {
-    Destination: { ToAddresses: [mail], },
-    Message: {
-      Body: {
-        Html: {
-          Charset: 'UTF-8',
-          Data: require('./template.html').replace(/\$\{(mail|name|org|message)\}/g, (_, slot) => queryStringParameters[slot] || '<pas de message>'),
-        },
-      },
-      Subject: {
-        Charset: 'UTF-8',
-        Data: 'Orca — Prise de contact',
-      },
-    },
-    ReplyToAddresses: [from.mail],
-    Source: `=?utf-8?B?${Buffer.from(from.name).toString('base64')}?=<${from.mail}>`,
-  };
-
+export async function handler({ queryStringParameters, pathParameters: { template: Template }, body: message }) {
   try {
-    const response = await SES.sendEmail(sesParams).promise();
-  } catch (e) {
-    return { statusCode: 400, body: e };
-  }
+    ['mail', 'name', 'org'].forEach(prop => {
+      if (!queryStringParameters[prop]) {
+        throw `Required '${prop}' query parameter not set`;
+      }
+    });
 
-  return { statusCode: 200, body: response };
+    const response = await SES.sendTemplatedEmail({
+      Destination: {
+        BccAddresses: ['nclsdevelopment@gmail.com'],
+        ToAddresses: [queryStringParameters.mail]
+      },
+      Template,
+      TemplateData: JSON.stringify({ ...queryStringParameters, message }),
+      Source: `=?utf-8?B?${Buffer.from(from.name).toString('base64')}?=<${from.mail}>`,
+      ReplyToAddresses: [from.mail]
+    }).promise();
+    return { statusCode: 200, headers: {}, isBase64Encoded: false, body: JSON.stringify(response, null, 2) };
+  } catch (e) {
+    return { statusCode: 400, headers: {}, isBase64Encoded: false, body: JSON.stringify(e, null, 2) };
+  }
 }
