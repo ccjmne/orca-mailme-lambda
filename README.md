@@ -31,9 +31,9 @@ Available commands:
     Commands:
       templates list               list existing templates
       templates get <template>     get specified template
-      templates create <template>  create template for specified template
-      templates update <template>  update template for specified template
-      templates delete <template>  delete template for specified template
+      templates create <template>  create specified template
+      templates update <template>  update specified template
+      templates delete <template>  delete specified template
 
     Options:
       --version  Show version number                                       [boolean]

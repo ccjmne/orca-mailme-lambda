@@ -19,17 +19,17 @@ return yargs
     const response = await SES.getTemplate({ TemplateName }).promise();
     console.log(response);
   })
-  .command('create <template>', 'create template for specified template', getTemplate, async ({ template: TemplateName }) => {
+  .command('create <template>', 'create specified template', getTemplate, async ({ template: TemplateName }) => {
     const response = await SES.createTemplate({ TemplateName }).promise();
     console.log(response);
   })
-  .command('update <template>', 'update template for specified template', getTemplate, async ({ template: TemplateName }) => {
+  .command('update <template>', 'update specified template', getTemplate, async ({ template: TemplateName }) => {
     const HtmlPart = await readFile(`${__dirname}/templates/${TemplateName}.html`);
     const TextPart = await readFile(`${__dirname}/templates/${TemplateName}.txt`);
     const response = await SES.updateTemplate({ Template: { ...require(`./templates/${TemplateName}.json`), TemplateName, HtmlPart, TextPart } }).promise();
     console.log(response);
   })
-  .command('delete <template>', 'delete template for specified template', getTemplate, async ({ template: TemplateName }) => {
+  .command('delete <template>', 'delete specified template', getTemplate, async ({ template: TemplateName }) => {
     const response = await SES.deleteTemplate({ TemplateName }).promise();
     console.log(response);
   })
