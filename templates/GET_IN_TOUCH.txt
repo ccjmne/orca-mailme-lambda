@@ -1,0 +1,25 @@
+===============================================================================
+Orca — La sécurité au travail
+===============================================================================
+
+Merci de votre intérêt pour notre solution.
+
+Nous avons bien reçu votre message et vous contacterons dans les plus brefs délais.
+
+---
+
+Vos coordonnées:
+
+ - Nom: {{name}}
+ - Organisation: {{org}}
+ - Addresse courriel: {{mail}}
+
+---
+
+Votre message:
+
+{{message}}
+
+===============================================================================
+CECI EST UN MESSAGE AUTOMATISÉ
+Pour tout renseignement, n'hésitez-pas à nous contacter à infos@orca-solution.com

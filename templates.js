@@ -25,7 +25,8 @@ return yargs
   })
   .command('update <template>', 'update template for specified template', getTemplate, async ({ template: TemplateName }) => {
     const HtmlPart = await readFile(`${__dirname}/templates/${TemplateName}.html`);
-    const response = await SES.updateTemplate({ Template: { ...require(`./templates/${TemplateName}.json`), TemplateName, HtmlPart } }).promise();
+    const TextPart = await readFile(`${__dirname}/templates/${TemplateName}.txt`);
+    const response = await SES.updateTemplate({ Template: { ...require(`./templates/${TemplateName}.json`), TemplateName, HtmlPart, TextPart } }).promise();
     console.log(response);
   })
   .command('delete <template>', 'delete template for specified template', getTemplate, async ({ template: TemplateName }) => {
