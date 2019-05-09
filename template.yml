@@ -7,6 +7,15 @@ Resources:
       CodeUri:            dist/
       Handler:            main.handler
       Runtime:            nodejs8.10
+      Policies:
+        - SESCrudPolicy:
+            IdentityName: 'orca-solution.com'
+        - Version:        '2012-10-17'
+          Statement:
+            - Effect:     Allow
+              Action:
+                - ses:SendEmail
+              Resource:   '*'
       Events:
         MailmeApi:
           Type:           Api
