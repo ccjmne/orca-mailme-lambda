@@ -35,6 +35,7 @@
     "aws-sdk": "^2.450.0"
   },
   "devDependencies": {
+    "js-yaml-loader": "^1.0.1",
     "yargs": "^13.2.2"
   }
 }
