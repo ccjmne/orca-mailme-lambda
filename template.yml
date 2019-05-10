@@ -6,7 +6,7 @@ Globals:
   Api:
     Cors:
       AllowMethods:       "'POST,OPTIONS'"
-      AllowOrigin:        "'*'"
+      AllowOrigin:        "'https://www.orca-solution.com'"
 Resources:
   MailmeFunction:
     Type:                 AWS::Serverless::Function
