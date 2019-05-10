@@ -1,12 +1,18 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform:                AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    Runtime:              nodejs8.10
+  Api:
+    Cors:
+      AllowMethods:       "'POST,OPTIONS'"
+      AllowOrigin:        "'*'"
 Resources:
   MailmeFunction:
     Type:                 AWS::Serverless::Function
     Properties:
       CodeUri:            dist/
       Handler:            main.handler
-      Runtime:            nodejs8.10
       Policies:
         - SESCrudPolicy:
             IdentityName: 'orca-solution.com'
