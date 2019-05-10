@@ -1,6 +1,7 @@
 'use strict';
 
 import AWS from 'aws-sdk';
+import { Response } from './utils/response';
 const SES = new AWS.SES({ region: 'eu-west-1' });
 
 const from = { mail: 'infos@orca-solution.com', name: 'Orca — Renseignements' };
@@ -26,8 +27,8 @@ export async function handler({ queryStringParameters, pathParameters: { templat
       Source: `=?utf-8?B?${Buffer.from(from.name).toString('base64')}?=<${from.mail}>`,
       ReplyToAddresses: [from.mail]
     }).promise();
-    return { statusCode: 200, headers: {}, isBase64Encoded: false, body: JSON.stringify(response, null, 2) };
-  } catch (e) {
-    return { statusCode: 400, headers: {}, isBase64Encoded: false, body: JSON.stringify(e, null, 2) };
+    return Response.OK(response);
+  } catch (error) {
+    return Response.BAD_REQUEST(error);
   }
 }
