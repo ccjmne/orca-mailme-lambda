@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/ccjmne/orca-mailme-lambda#readme",
   "dependencies": {
-    "aws-sdk": "^2.450.0"
+    "aws-sdk": "^2.814.0"
   },
   "devDependencies": {
     "js-yaml-loader": "^1.0.1",
